@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HÀNH TRÌNH. — Lâm Quốc Minh & Trần Tạ Nhật Phúc</title>
+  <meta name="description" content="Lâm Quốc Minh thân mời em yêu Trần Tạ Nhật Phúc buổi hẹn tình iuuuu: KTX Khu B – Thảo Cầm Viên – Ăn trưa – KTX Khu B (09:00–18:00)." />
+
+  <!-- Google Fonts: Be Vietnam Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bgPrimary: '#FFF5F7',      /* Hồng phấn nền chính dịu mắt */
+            bgContent: '#FFFFFF',      /* Trắng tinh khôi */
+            textPrimary: '#3D1E28',    /* Đỏ rượu trầm sang trọng, rõ chữ */
+            textSecondary: '#8C5E6B',  /* Hồng tím trầm dịu nhẹ */
+            accent: '#D85A7F',         /* Hồng tình yêu chủ đạo */
+            accentHover: '#C04569',    /* Hồng đậm khi di chuột */
+            accentSoft: '#FFE4EC',     /* Hồng cánh sen nhạt làm điểm nhấn */
+            borderSubtle: '#F5D6DF',   /* Viền hồng nhạt tinh tế */
+          },
+          fontFamily: {
+            sans: ['"Be Vietnam Pro"', 'sans-serif'],
+          },
+          borderRadius: {
+            editorial: '12px',
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background-color: #FFF5F7;
+      color: #3D1E28;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background-color: #D85A7F;
+      color: #FFFFFF;
+    }
+
+    /* Hiệu ứng xuất hiện mềm mại khi cuộn */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hiệu ứng phóng nhẹ hình ảnh khi di chuột */
+    .editorial-img {
+      transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .group:hover .editorial-img {
+      transform: scale(1.03);
+    }
+
+    /* Điểm nhấn dòng thời gian màu hồng tình yêu khi cuộn tới */
+    .timeline-item {
+      transition: border-color 0.4s ease, background-color 0.4s ease;
+    }
+
+    .timeline-dot {
+      transition: background-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .timeline-item.active-step .timeline-dot {
+      background-color: #D85A7F;
+      transform: scale(1.25);
+      box-shadow: 0 0 0 6px rgba(216, 90, 127, 0.22);
+    }
+
+    .timeline-item.active-step .timeline-card {
+      border-color: #D85A7F;
+    }
+  </style>
+</head>
+<body id="trang-chu" class="font-sans text-textPrimary bg-bgPrimary">
+
+  <!-- ==========================================
+       PHẦN 1 — THANH ĐIỀU HƯỚNG
+  =========================================== -->
+  <header class="fixed top-0 left-0 right-0 z-40 bg-bgContent/95 backdrop-blur-sm border-b border-borderSubtle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#trang-chu" class="inline-flex items-center gap-2 text-xl font-bold tracking-tight text-textPrimary focus:outline-none focus:ring-2 focus:ring-accent rounded px-1">
+        <i data-lucide="heart" class="w-5 h-5 text-accent fill-accent"></i>
+        <span>HÀNH TRÌNH.</span>
+      </a>
+
+      <!-- Menu trên màn hình lớn -->
+      <nav aria-label="Điều hướng chính" class="hidden md:flex items-center space-x-8 text-sm font-medium text-textSecondary">
+        <a href="#trang-chu" class="hover:text-accent transition-colors py-1">Trang chủ</a>
+        <a href="#diem-den" class="hover:text-accent transition-colors py-1">Điểm đến</a>
+        <a href="#lich-trinh" class="hover:text-accent transition-colors py-1">Lịch trình</a>
+        <a href="#hinh-anh" class="hover:text-accent transition-colors py-1">Hình ảnh</a>
+      </nav>
+
+      <div class="hidden md:block">
+        <a href="#lich-trinh" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-accent hover:bg-accentHover transition-colors rounded-editorial shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent">
+          Xem lịch trình
+        </a>
+      </div>
+
+      <!-- Nút mở menu trên di động -->
+      <button id="mobile-menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Mở trình đơn điều hướng" class="md:hidden p-2.5 rounded-editorial text-textPrimary hover:bg-bgPrimary border border-borderSubtle focus:outline-none focus:ring-2 focus:ring-accent">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Menu thu gọn trên thiết bị di động -->
+    <div id="mobile-menu" class="hidden md:hidden bg-bgContent border-b border-borderSubtle px-4 pt-3 pb-6 space-y-3">
+      <nav aria-label="Điều hướng di động" class="flex flex-col space-y-2 text-base font-medium text-textSecondary">
+        <a href="#trang-chu" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-bgPrimary hover:text-accent">Trang chủ</a>
+        <a href="#diem-den" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-bgPrimary hover:text-accent">Điểm đến</a>
+        <a href="#lich-trinh" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-bgPrimary hover:text-accent">Lịch trình</a>
+        <a href="#hinh-anh" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-bgPrimary hover:text-accent">Hình ảnh</a>
+      </nav>
+      <div class="pt-2">
+        <a href="#lich-trinh" class="mobile-nav-link w-full inline-flex items-center justify-center px-5 py-3 text-sm font-medium text-white bg-accent hover:bg-accentHover rounded-editorial">
+          Xem lịch trình
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-20">
+    <!-- ==========================================
+         PHẦN 2 — GIỚI THIỆU HÀNH TRÌNH & LỜI MỜI
+    =========================================== -->
+    <section class="py-16 md:py-24 lg:py-28 border-b border-borderSubtle bg-gradient-to-b from-bgPrimary via-[#FFF0F4] to-bgPrimary">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+          <!-- Cột nội dung -->
+          <div class="lg:col-span-6 space-y-8 reveal">
+            <div class="space-y-4">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accentSoft border border-borderSubtle text-accent text-xs font-semibold tracking-wider uppercase">
+                <i data-lucide="heart" class="w-3.5 h-3.5 fill-accent"></i>
+                <span>KHÁM PHÁ THÀNH PHỐ TRONG MỘT NGÀY</span>
+              </div>
+
+              <!-- Thẻ lời mời tình yêu nổi bật -->
+              <div class="p-5 sm:p-6 bg-bgContent border-2 border-accent/35 border-l-4 border-l-accent rounded-editorial shadow-sm space-y-1.5">
+                <div class="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-accent">
+                  <i data-lucide="sparkles" class="w-4 h-4"></i>
+                  <span>Thiệp mời hẹn hò</span>
+                </div>
+                <p class="text-lg sm:text-xl font-semibold text-textPrimary leading-snug">
+                  Lâm Quốc Minh thân mời em yêu Trần Tạ Nhật Phúc buổi hẹn tình iuuuu
+                </p>
+              </div>
+
+              <h1 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-textPrimary leading-[1.15] pt-1">
+                Một ngày khám phá Sài Gòn.
+              </h1>
+
+              <p class="text-base sm:text-lg text-textSecondary leading-relaxed pt-1 max-w-xl">
+                Rời nhịp sống thường ngày để khám phá thiên nhiên tại Thảo Cầm Viên, trải nghiệm giao thông công cộng, cùng nhau ăn trưa và tận hưởng những khoảnh khắc thư giãn giữa trung tâm thành phố.
+              </p>
+            </div>
+
+            <!-- Thông tin nổi bật -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-4 pt-2 border-t border-borderSubtle">
+              <div class="bg-bgContent p-4 rounded-editorial border border-borderSubtle">
+                <span class="block text-xs text-textSecondary mb-1">Khởi hành</span>
+                <strong class="text-base font-semibold text-accent">09:00</strong>
+              </div>
+              <div class="bg-bgContent p-4 rounded-editorial border border-borderSubtle">
+                <span class="block text-xs text-textSecondary mb-1">Kết thúc</span>
+                <strong class="text-base font-semibold text-accent">18:00</strong>
+              </div>
+              <div class="bg-bgContent p-4 rounded-editorial border border-borderSubtle">
+                <span class="block text-xs text-textSecondary mb-1">Điểm xuất phát</span>
+                <strong class="text-base font-semibold text-textPrimary">KTX Khu B</strong>
+              </div>
+              <div class="bg-bgContent p-4 rounded-editorial border border-borderSubtle">
+                <span class="block text-xs text-textSecondary mb-1">Phương tiện</span>
+                <strong class="text-base font-semibold text-textPrimary">Xe buýt và Metro</strong>
+              </div>
+            </div>
+
+            <!-- Hai nút điều hướng -->
+            <div class="flex flex-col sm:flex-row gap-3.5 pt-2">
+              <a href="#lich-trinh" class="inline-flex items-center justify-center px-6 py-3.5 text-sm font-medium text-white bg-accent hover:bg-accentHover transition-colors rounded-editorial shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent">
+                <i data-lucide="heart" class="w-4 h-4 mr-2 fill-white"></i>
+                <span>Xem lịch trình</span>
+              </a>
+              <a href="#diem-den" class="inline-flex items-center justify-center px-6 py-3.5 text-sm font-medium text-textPrimary bg-bgContent hover:bg-accentSoft/60 border border-borderSubtle transition-colors rounded-editorial focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent">
+                <i data-lucide="compass" class="w-4 h-4 mr-2 text-accent"></i>
+                <span>Khám phá tuyến đường</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Cột hình ảnh thực tế -->
+          <div class="lg:col-span-6 reveal">
+            <figure class="group relative overflow-hidden rounded-editorial border-2 border-borderSubtle bg-bgContent shadow-sm">
+              <div class="aspect-[4/5] sm:aspect-[16/11] lg:aspect-[4/4.5] w-full overflow-hidden bg-bgPrimary">
+                <img
+                  id="hero-real-img"
+                  src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=1400&q=85"
+                  alt="Không gian thực vật nhiệt đới và lối đi rợp bóng cây tại Thảo Cầm Viên Sài Gòn"
+                  class="w-full h-full object-cover editorial-img"
+                />
+              </div>
+              <figcaption class="p-4 sm:px-6 bg-bgContent border-t border-borderSubtle flex items-center justify-between text-xs text-textSecondary">
+                <span>Thảo Cầm Viên Sài Gòn — Điểm hẹn xanh mát giữa trung tâm Quận 1</span>
+                <span class="font-semibold text-accent shrink-0 ml-2">09:00 — 18:00</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PHẦN 3 — NHỮNG ĐIỂM ĐẾN NỔI BẬT
+    =========================================== -->
+    <section id="diem-den" class="py-20 md:py-28 border-b border-borderSubtle">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mb-14 reveal">
+          <p class="text-xs font-semibold tracking-widest text-accent uppercase mb-3">ĐIỂM HẸN TRONG NGÀY</p>
+          <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-textPrimary">
+            Những điểm dừng trong hành trình
+          </h2>
+        </div>
+
+        <div id="destinations-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Được render tự động từ JOURNEY_DATA -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PHẦN 4 — LỊCH TRÌNH CHI TIẾT
+    =========================================== -->
+    <section id="lich-trinh" class="py-20 md:py-28 bg-bgContent border-b border-borderSubtle">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mb-16 reveal">
+          <p class="text-xs font-semibold tracking-widest text-accent uppercase mb-3">DÒNG THỜI GIAN</p>
+          <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-textPrimary mb-4">
+            Lịch trình trong ngày
+          </h2>
+          <p class="text-base sm:text-lg text-textSecondary leading-relaxed">
+            Khám phá từng chặng đường với lịch trình được sắp xếp hợp lý, cân bằng giữa tham quan, di chuyển và nghỉ ngơi.
+          </p>
+        </div>
+
+        <!-- Container dòng thời gian -->
+        <div id="timeline-container" class="space-y-16">
+          <!-- Được render tự động từ JOURNEY_DATA -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PHẦN 5 — THƯ VIỆN HÌNH ẢNH TRỰC QUAN
+    =========================================== -->
+    <section id="hinh-anh" class="py-20 md:py-28 border-b border-borderSubtle">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4 reveal">
+          <div>
+            <p class="text-xs font-semibold tracking-widest text-accent uppercase mb-3">GÓC NHÌN THỰC TẾ</p>
+            <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-textPrimary">
+              Hình ảnh hành trình
+            </h2>
+          </div>
+          <p class="text-sm text-textSecondary">
+            Nhấn vào hình ảnh bất kỳ để phóng to và xem chú thích địa điểm.
+          </p>
+        </div>
+
+        <!-- Lưới tạp chí bất đối xứng cân bằng -->
+        <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-12 gap-6">
+          <!-- Được render tự động từ JOURNEY_DATA -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PHẦN 6 — KẾT THÚC
+    =========================================== -->
+    <section class="py-20 md:py-28 bg-gradient-to-br from-[#D85A7F] to-[#B84366] text-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 text-xs sm:text-sm font-medium tracking-wider uppercase text-white">
+          <i data-lucide="heart" class="w-4 h-4 fill-white"></i>
+          <span>Lâm Quốc Minh &amp; Trần Tạ Nhật Phúc</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight leading-tight">
+          Một ngày để khám phá nhiều hơn.
+        </h2>
+        <p class="text-base sm:text-lg text-white/90 max-w-xl mx-auto leading-relaxed font-light">
+          Những trải nghiệm đáng nhớ đôi khi chỉ cách chúng ta một chuyến xe.
+        </p>
+        <div class="pt-3">
+          <a href="#lich-trinh" class="inline-flex items-center justify-center px-7 py-3.5 text-sm font-semibold text-accent bg-white hover:bg-bgPrimary transition-colors rounded-editorial shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-accent focus:ring-white">
+            <span>Xem lại hành trình</span>
+            <i data-lucide="arrow-up" class="w-4 h-4 ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       PHẦN 7 — CHÂN TRANG
+  =========================================== -->
+  <footer class="bg-bgContent border-t border-borderSubtle py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="text-center sm:text-left">
+        <a href="#trang-chu" class="inline-flex items-center gap-1.5 text-lg font-bold tracking-tight text-textPrimary">
+          <i data-lucide="heart" class="w-4 h-4 text-accent fill-accent"></i>
+          <span>HÀNH TRÌNH.</span>
+        </a>
+        <p class="text-sm text-textSecondary mt-1">Một hành trình nhỏ giữa lòng Sài Gòn.</p>
+      </div>
+
+      <button
+        type="button"
+        onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+        class="inline-flex items-center px-4 py-2.5 text-xs font-medium text-textPrimary bg-bgPrimary hover:bg-accentSoft border border-borderSubtle rounded-editorial transition-colors focus:outline-none focus:ring-2 focus:ring-accent"
+      >
+        <span>Về đầu trang</span>
+        <i data-lucide="arrow-up" class="w-3.5 h-3.5 ml-2 text-accent"></i>
+      </button>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       HỘP THOẠI PHÓNG TO HÌNH ẢNH (LIGHTBOX)
+  =========================================== -->
+  <div
+    id="lightbox-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Xem hình ảnh phóng to"
+    class="fixed inset-0 z-50 hidden bg-[#2A121A]/90 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8"
+  >
+    <button
+      id="lightbox-close"
+      type="button"
+      aria-label="Đóng cửa sổ hình ảnh"
+      class="absolute top-5 right-5 p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white"
+    >
+      <i data-lucide="x" class="w-6 h-6"></i>
+    </button>
+
+    <button
+      id="lightbox-prev"
+      type="button"
+      aria-label="Hình ảnh trước"
+      class="absolute left-4 sm:left-8 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white"
+    >
+      <i data-lucide="chevron-left" class="w-6 h-6"></i>
+    </button>
+
+    <figure class="max-w-4xl w-full max-h-[85vh] flex flex-col items-center">
+      <img
+        id="lightbox-img"
+        src=""
+        alt=""
+        class="max-h-[75vh] w-auto object-contain rounded-editorial border border-white/15 bg-black/20"
+      />
+      <figcaption id="lightbox-caption" class="mt-4 text-sm sm:text-base text-white/90 font-medium text-center max-w-2xl"></figcaption>
+    </figure>
+
+    <button
+      id="lightbox-next"
+      type="button"
+      aria-label="Hình ảnh tiếp theo"
+      class="absolute right-4 sm:right-8 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white"
+    >
+      <i data-lucide="chevron-right" class="w-6 h-6"></i>
+    </button>
+  </div>
+
+  <!-- ==========================================
+       DỮ LIỆU & LOGIC TƯƠNG TÁC
+  =========================================== -->
+  <script>
+    /**
+     * DỮ LIỆU HÀNH TRÌNH & HÌNH ẢNH TRỰC QUAN
+     */
+    const JOURNEY_DATA = {
+      destinations: [
+        {
+          id: "dest-thao-cam-vien",
+          wikiPage: "Thảo_Cầm_Viên_Sài_Gòn",
+          number: "01",
+          title: "Thảo Cầm Viên Sài Gòn",
+          locationTag: "Số 2 Nguyễn Bỉnh Khiêm, Quận 1",
+          description: "Khám phá không gian thiên nhiên rộng lớn, quan sát các loài động vật và tận hưởng những khoảng xanh giữa lòng thành phố.",
+          image: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=1200&q=85",
+          alt: "Không gian cây xanh và khuôn viên Thảo Cầm Viên Sài Gòn"
+        },
+        {
+          id: "dest-an-trua",
+          number: "02",
+          title: "Ăn trưa và nghỉ ngơi",
+          locationTag: "Khu vực trung tâm Quận 1",
+          description: "Thưởng thức bữa trưa, nghỉ ngơi và tận hưởng không gian thư giãn cùng nhau tại trung tâm thành phố.",
+          image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=85",
+          alt: "Không gian ăn trưa ấm cúng tại trung tâm thành phố"
+        },
+        {
+          id: "dest-metro",
+          wikiPage: "Tuyến_số_1_(Đường_sắt_đô_thị_Thành_phố_Hồ_Chí_Minh)",
+          number: "03",
+          title: "Metro Thành phố Hồ Chí Minh",
+          locationTag: "Tuyến Metro số 1 (Bến Thành – Suối Tiên)",
+          description: "Trải nghiệm phương tiện giao thông công cộng hiện đại và ngắm nhìn thành phố trong suốt hành trình.",
+          image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=85",
+          alt: "Tàu điện tuyến Metro số 1 Thành phố Hồ Chí Minh"
+        }
+      ],
+
+      timelinePhases: [
+        {
+          phaseTitle: "Buổi sáng — Khởi hành và khám phá",
+          items: [
+            {
+              time: "09:00–09:30",
+              title: "Khởi hành từ KTX Khu B",
+              description: "Di chuyển bằng xe buýt số 53 hoặc 99 theo hướng Suối Tiên. Xuống gần ga Metro Đại học Quốc gia và đi bộ đến nhà ga."
+            },
+            {
+              time: "09:30–10:05",
+              title: "Trải nghiệm Metro số 1",
+              description: "Lên tàu theo hướng Bến Thành và xuống tại ga Ba Son."
+            },
+            {
+              time: "10:05–10:25",
+              title: "Di chuyển đến Thảo Cầm Viên",
+              description: "Đi bộ từ ga Ba Son đến cổng Thảo Cầm Viên trên đường Nguyễn Bỉnh Khiêm."
+            }
+          ]
+        },
+        {
+          phaseTitle: "Buổi trưa — Khám phá Thảo Cầm Viên",
+          items: [
+            {
+              time: "10:25–13:30",
+              title: "Tham quan Thảo Cầm Viên",
+              description: "Dành hơn 3 giờ để khám phá các khu vực nổi bật.",
+              isFeatured: true,
+              subSchedule: [
+                { time: "10:25–11:15", activity: "Tham quan các khu động vật và tìm hiểu các loài thú." },
+                { time: "11:15–12:00", activity: "Tiếp tục khám phá những khu vực tham quan nổi bật." },
+                { time: "12:00–12:40", activity: "Dạo vườn thực vật, tận hưởng không gian xanh." },
+                { time: "12:40–13:10", activity: "Chụp ảnh, nghỉ chân và tham quan những điểm còn lại." },
+                { time: "13:10–13:30", activity: "Kết thúc tham quan, chuẩn bị di chuyển đi ăn trưa." }
+              ],
+              note: "Các khoảng thời gian chỉ mang tính gợi ý và có thể thay đổi tùy tốc độ tham quan.",
+              featuredImages: {
+                main: {
+                  id: "timeline-main-zoo-img",
+                  src: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=1400&q=85",
+                  caption: "Trục đường nội khu rợp bóng cây cổ thụ tại Thảo Cầm Viên Sài Gòn"
+                },
+                small: [
+                  {
+                    src: "https://images.unsplash.com/photo-1547721064-da6cfb341d50?auto=format&fit=crop&w=800&q=85",
+                    caption: "Khu nuôi hươu cao cổ và các loài thú ăn cỏ"
+                  },
+                  {
+                    src: "https://images.unsplash.com/photo-1497206365907-f5e630693df0?auto=format&fit=crop&w=800&q=85",
+                    caption: "Hồ hồng hạc giữa khuôn viên xanh mát"
+                  },
+                  {
+                    src: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=800&q=85",
+                    caption: "Không gian vườn thực vật và thảm cây nhiệt đới"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          phaseTitle: "Buổi chiều — Ăn trưa và thư giãn",
+          items: [
+            {
+              time: "13:30–13:50",
+              title: "Di chuyển đến điểm ăn trưa",
+              description: "Rời Thảo Cầm Viên và đi bộ đến địa điểm dùng bữa trưa tại khu vực trung tâm."
+            },
+            {
+              time: "13:50–14:45",
+              title: "Ăn trưa và nghỉ ngơi",
+              description: "Dành thời gian thưởng thức bữa trưa và nghỉ chân sau buổi tham quan Thảo Cầm Viên."
+            },
+            {
+              time: "14:45–15:45",
+              title: "Dạo chơi và chụp ảnh",
+              description: "Tản bộ thư giãn tại trung tâm thành phố và lưu lại những bức ảnh kỷ niệm trong buổi hẹn."
+            },
+            {
+              time: "15:45–16:15",
+              title: "Uống nước và thư giãn",
+              description: "Nghỉ ngơi, trò chuyện và chuẩn bị cho hành trình quay về."
+            }
+          ]
+        },
+        {
+          phaseTitle: "Cuối ngày — Trở về KTX",
+          items: [
+            {
+              time: "16:15–18:00",
+              title: "Di chuyển về KTX Khu B",
+              description: "Thực hiện hành trình quay về điểm xuất phát bằng phương tiện công cộng.",
+              steps: [
+                "Đi bộ đến ga Metro Nhà hát Thành phố.",
+                "Lên Metro số 1 theo hướng Bến xe Suối Tiên và xuống tại ga Đại học Quốc gia.",
+                "Chuyển sang xe buýt số 170 theo hướng KTX Khu B.",
+                "Dự kiến kết thúc hành trình lúc 18:00."
+              ],
+              warningNote: "Lưu ý: Đây là thời gian ước tính. Cần kiểm tra lịch vận hành xe buýt và metro trước khi khởi hành; không xem thời gian dự kiến như giờ xe chạy đã xác nhận."
+            }
+          ]
+        }
+      ],
+
+      gallery: [
+        {
+          id: "gal-zoo-space",
+          wikiPage: "Thảo_Cầm_Viên_Sài_Gòn",
+          title: "Không gian Thảo Cầm Viên",
+          subtitle: "Khuôn viên cây xanh hơn 160 năm tuổi ngay trung tâm Quận 1, TP.HCM",
+          src: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=1400&q=85",
+          gridSpan: "md:col-span-7 aspect-[16/10]"
+        },
+        {
+          id: "gal-animals",
+          title: "Các loài động vật",
+          subtitle: "Đàn hồng hạc, hươu cao cổ và các loài thú sinh sống trong môi trường bán tự nhiên",
+          src: "https://images.unsplash.com/photo-1497206365907-f5e630693df0?auto=format&fit=crop&w=1000&q=85",
+          gridSpan: "md:col-span-5 aspect-[4/3] md:aspect-auto md:h-full"
+        },
+        {
+          id: "gal-botanical",
+          title: "Vườn thực vật",
+          subtitle: "Hệ sinh thái thực vật nhiệt đới đa dạng, hồ sen và những lối đi bộ rợp bóng mát",
+          src: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=1000&q=85",
+          gridSpan: "md:col-span-5 aspect-[4/3]"
+        },
+        {
+          id: "gal-metro",
+          wikiPage: "Tuyến_số_1_(Đường_sắt_đô_thị_Thành_phố_Hồ_Chí_Minh)",
+          title: "Metro TP.HCM",
+          subtitle: "Tuyến đường sắt đô thị số 1 kết nối ga Đại học Quốc gia đến ga Ba Son và Nhà hát Thành phố",
+          src: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=85",
+          gridSpan: "md:col-span-7 aspect-[16/9]"
+        },
+        {
+          id: "gal-lunch",
+          title: "Bữa trưa tại trung tâm",
+          subtitle: "Thưởng thức bữa trưa ngon miệng và nạp lại năng lượng sau buổi sáng dạo chơi",
+          src: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=85",
+          gridSpan: "md:col-span-6 aspect-[16/10]"
+        },
+        {
+          id: "gal-dining",
+          title: "Không gian uống nước và nghỉ ngơi",
+          subtitle: "Khoảng thời gian thư giãn, trò chuyện buổi chiều trước khi lên tàu trở về",
+          src: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=85",
+          gridSpan: "md:col-span-6 aspect-[16/10]"
+        }
+      ]
+    };
+
+    /* ==========================================
+       1. RENDER ĐIỂM ĐẾN NỔI BẬT
+    =========================================== */
+    function renderDestinations() {
+      const container = document.getElementById("destinations-grid");
+      container.innerHTML = JOURNEY_DATA.destinations
+        .map(
+          (dest) => `
+          <article class="group bg-bgContent rounded-editorial border border-borderSubtle overflow-hidden flex flex-col justify-between shadow-sm reveal">
+            <div>
+              <div class="aspect-[4/3] overflow-hidden bg-bgPrimary border-b border-borderSubtle relative">
+                <img
+                  id="${dest.id}-img"
+                  src="${dest.image}"
+                  alt="${dest.alt}"
+                  loading="lazy"
+                  class="w-full h-full object-cover editorial-img"
+                />
+                <span class="absolute bottom-3 left-3 px-2.5 py-1 text-[11px] font-medium bg-bgContent/90 backdrop-blur-sm text-textPrimary rounded border border-borderSubtle">
+                  ${dest.locationTag}
+                </span>
+              </div>
+              <div class="p-6 sm:p-7 space-y-3">
+                <span class="text-xs font-semibold tracking-widest text-accent block">
+                  ĐIỂM DỪNG ${dest.number}
+                </span>
+                <h3 class="text-xl font-semibold text-textPrimary">
+                  ${dest.number} — ${dest.title}
+                </h3>
+                <p class="text-sm sm:text-base text-textSecondary leading-relaxed">
+                  ${dest.description}
+                </p>
+              </div>
+            </div>
+          </article>
+        `
+        )
+        .join("");
+    }
+
+    /* ==========================================
+       2. RENDER LỊCH TRÌNH CHI TIẾT
+    =========================================== */
+    function renderTimeline() {
+      const container = document.getElementById("timeline-container");
+      container.innerHTML = JOURNEY_DATA.timelinePhases
+        .map(
+          (phase) => `
+          <div class="space-y-6 reveal">
+            <div class="border-b border-borderSubtle pb-3">
+              <h3 class="text-lg sm:text-xl font-semibold text-textPrimary">
+                ${phase.phaseTitle}
+              </h3>
+            </div>
+
+            <div class="relative pl-6 sm:pl-8 border-l-2 border-borderSubtle space-y-8">
+              ${phase.items
+                .map((item) => {
+                  if (item.isFeatured) {
+                    return `
+                      <article class="timeline-item relative group">
+                        <span class="timeline-dot absolute -left-[31px] sm:-left-[39px] top-2 w-3.5 h-3.5 rounded-full bg-accent border-2 border-white"></span>
+                        <div class="timeline-card bg-bgPrimary p-6 sm:p-8 rounded-editorial border-2 border-accent/40 space-y-6">
+                          <div class="flex flex-wrap items-center justify-between gap-2">
+                            <span class="inline-flex items-center px-3 py-1 text-xs font-semibold bg-accent text-white rounded-md">
+                              ${item.time}
+                            </span>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-accent">
+                              Điểm hẹn trọng tâm trong ngày
+                            </span>
+                          </div>
+
+                          <div class="space-y-2">
+                            <h4 class="text-2xl font-semibold text-textPrimary">${item.title}</h4>
+                            <p class="text-base text-textSecondary leading-relaxed">${item.description}</p>
+                          </div>
+
+                          <!-- Gợi ý phân bổ thời gian -->
+                          <div class="bg-bgContent p-5 rounded-editorial border border-borderSubtle space-y-3">
+                            <h5 class="text-sm font-semibold text-textPrimary">Gợi ý phân bổ thời gian:</h5>
+                            <ul class="space-y-2.5 text-sm text-textSecondary">
+                              ${item.subSchedule
+                                .map(
+                                  (sub) => `
+                                  <li class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3 border-b border-borderSubtle/70 pb-2 last:border-none last:pb-0">
+                                    <span class="font-semibold text-accent shrink-0 w-28">${sub.time}:</span>
+                                    <span>${sub.activity}</span>
+                                  </li>
+                                `
+                                )
+                                .join("")}
+                            </ul>
+                            <p class="text-xs text-textSecondary italic pt-2 border-t border-borderSubtle">
+                              ${item.note}
+                            </p>
+                          </div>
+
+                          <!-- Bộ ảnh trực quan Thảo Cầm Viên: 1 ảnh lớn + 3 ảnh nhỏ -->
+                          <div class="space-y-3">
+                            <figure class="overflow-hidden rounded-editorial border border-borderSubtle bg-bgContent">
+                              <img
+                                id="${item.featuredImages.main.id}"
+                                src="${item.featuredImages.main.src}"
+                                alt="${item.featuredImages.main.caption}"
+                                loading="lazy"
+                                class="w-full h-64 sm:h-80 object-cover editorial-img"
+                              />
+                              <figcaption class="px-4 py-2.5 text-xs text-textSecondary border-t border-borderSubtle bg-bgContent">
+                                ${item.featuredImages.main.caption}
+                              </figcaption>
+                            </figure>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                              ${item.featuredImages.small
+                                .map(
+                                  (smallImg) => `
+                                  <figure class="overflow-hidden rounded-editorial border border-borderSubtle bg-bgContent flex flex-col justify-between">
+                                    <div class="h-40 sm:h-36 overflow-hidden bg-bgPrimary">
+                                      <img
+                                        src="${smallImg.src}"
+                                        alt="${smallImg.caption}"
+                                        loading="lazy"
+                                        class="w-full h-full object-cover"
+                                      />
+                                    </div>
+                                    <figcaption class="px-3 py-2 text-xs text-textSecondary border-t border-borderSubtle">
+                                      ${smallImg.caption}
+                                    </figcaption>
+                                  </figure>
+                                `
+                                )
+                                .join("")}
+                            </div>
+                          </div>
+                        </div>
+                      </article>
+                    `;
+                  }
+
+                  return `
+                    <article class="timeline-item relative">
+                      <span class="timeline-dot absolute -left-[31px] sm:-left-[39px] top-2 w-3 h-3 rounded-full bg-borderSubtle border-2 border-white"></span>
+                      <div class="timeline-card bg-bgPrimary p-5 sm:p-6 rounded-editorial border border-borderSubtle space-y-3">
+                        <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                          <span class="text-sm font-semibold text-accent">${item.time}</span>
+                          <span class="text-borderSubtle">|</span>
+                          <h4 class="text-lg font-semibold text-textPrimary">${item.title}</h4>
+                        </div>
+                        <p class="text-sm sm:text-base text-textSecondary leading-relaxed">
+                          ${item.description}
+                        </p>
+                        ${
+                          item.steps
+                            ? `<ul class="space-y-1.5 pt-1 text-sm text-textSecondary list-disc list-inside">
+                                ${item.steps.map((s) => `<li>${s}</li>`).join("")}
+                               </ul>`
+                            : ""
+                        }
+                        ${
+                          item.warningNote
+                            ? `<div class="p-4 mt-3 rounded-lg bg-bgContent border border-borderSubtle text-xs sm:text-sm text-textSecondary leading-relaxed">
+                                <strong class="text-textPrimary font-semibold">Lưu ý vận hành: </strong>${item.warningNote.replace("Lưu ý: ", "")}
+                               </div>`
+                            : ""
+                        }
+                      </div>
+                    </article>
+                  `;
+                })
+                .join("")}
+            </div>
+          </div>
+        `
+        )
+        .join("");
+    }
+
+    /* ==========================================
+       3. THƯ VIỆN HÌNH ẢNH & LIGHTBOX
+    =========================================== */
+    let currentLightboxIndex = 0;
+
+    function renderGallery() {
+      const container = document.getElementById("gallery-grid");
+      container.innerHTML = JOURNEY_DATA.gallery
+        .map(
+          (item, index) => `
+          <figure
+            data-gallery-index="${index}"
+            tabindex="0"
+            role="button"
+            aria-label="Phóng to hình ảnh: ${item.title}"
+            class="gallery-item group relative overflow-hidden rounded-editorial border border-borderSubtle bg-bgContent cursor-pointer shadow-sm focus:outline-none focus:ring-2 focus:ring-accent ${item.gridSpan}"
+          >
+            <img
+              id="${item.id}-img"
+              src="${item.src}"
+              alt="${item.title}"
+              loading="lazy"
+              class="w-full h-full object-cover editorial-img"
+            />
+            <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#2A121A]/85 via-[#2A121A]/40 to-transparent p-5 text-white">
+              <h3 class="text-base font-semibold">${item.title}</h3>
+              <p class="text-xs text-white/85 mt-1 leading-relaxed">${item.subtitle}</p>
+            </figcaption>
+          </figure>
+        `
+        )
+        .join("");
+
+      document.querySelectorAll(".gallery-item").forEach((el) => {
+        const openItem = () => {
+          const idx = parseInt(el.getAttribute("data-gallery-index"), 10);
+          openLightbox(idx);
+        };
+        el.addEventListener("click", openItem);
+        el.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openItem();
+          }
+        });
+      });
+    }
+
+    function openLightbox(index) {
+      currentLightboxIndex = index;
+      updateLightboxContent();
+      const modal = document.getElementById("lightbox-modal");
+      modal.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+      document.getElementById("lightbox-close").focus();
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById("lightbox-modal");
+      modal.classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+
+    function updateLightboxContent() {
+      const item = JOURNEY_DATA.gallery[currentLightboxIndex];
+      const img = document.getElementById("lightbox-img");
+      const caption = document.getElementById("lightbox-caption");
+      img.src = item.src;
+      img.alt = item.title;
+      caption.textContent = `${item.title} — ${item.subtitle}`;
+    }
+
+    /* ==========================================
+       4. ĐỒNG BỘ ẢNH THỰC TẾ TỪ WIKIPEDIA TP.HCM
+    =========================================== */
+    async function syncAuthenticLocationPhotos() {
+      const wikiPages = [
+        "Thảo_Cầm_Viên_Sài_Gòn",
+        "Tuyến_số_1_(Đường_sắt_đô_thị_Thành_phố_Hồ_Chí_Minh)"
+      ];
+
+      const fetchedImages = {};
+
+      await Promise.all(
+        wikiPages.map(async (pageTitle) => {
+          try {
+            const res = await fetch(
+              `https://vi.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(pageTitle)}`
+            );
+            if (!res.ok) return;
+            const data = await res.json();
+            const imgUrl =
+              (data.originalimage && data.originalimage.source) ||
+              (data.thumbnail && data.thumbnail.source);
+
+            if (imgUrl) {
+              await new Promise((resolve) => {
+                const preloader = new Image();
+                preloader.onload = () => {
+                  fetchedImages[pageTitle] = imgUrl;
+                  resolve();
+                };
+                preloader.onerror = () => resolve();
+                preloader.src = imgUrl;
+              });
+            }
+          } catch (e) {
+            // Giữ nguyên ảnh mặc định nếu không có kết nối mạng
+          }
+        })
+      );
+
+      if (fetchedImages["Thảo_Cầm_Viên_Sài_Gòn"]) {
+        const realZooUrl = fetchedImages["Thảo_Cầm_Viên_Sài_Gòn"];
+        const heroImg = document.getElementById("hero-real-img");
+        const destZooImg = document.getElementById("dest-thao-cam-vien-img");
+        const timelineZooImg = document.getElementById("timeline-main-zoo-img");
+        const galZooImg = document.getElementById("gal-zoo-space-img");
+
+        if (heroImg) heroImg.src = realZooUrl;
+        if (destZooImg) destZooImg.src = realZooUrl;
+        if (timelineZooImg) timelineZooImg.src = realZooUrl;
+        if (galZooImg) galZooImg.src = realZooUrl;
+
+        const galZooObj = JOURNEY_DATA.gallery.find((g) => g.id === "gal-zoo-space");
+        if (galZooObj) galZooObj.src = realZooUrl;
+      }
+
+      const metroKey = "Tuyến_số_1_(Đường_sắt_đô_thị_Thành_phố_Hồ_Chí_Minh)";
+      if (fetchedImages[metroKey]) {
+        const realMetroUrl = fetchedImages[metroKey];
+        const destMetroImg = document.getElementById("dest-metro-img");
+        const galMetroImg = document.getElementById("gal-metro-img");
+
+        if (destMetroImg) destMetroImg.src = realMetroUrl;
+        if (galMetroImg) galMetroImg.src = realMetroUrl;
+
+        const galMetroObj = JOURNEY_DATA.gallery.find((g) => g.id === "gal-metro");
+        if (galMetroObj) galMetroObj.src = realMetroUrl;
+      }
+    }
+
+    /* ==========================================
+       5. KHỞI TẠO HIỆU ỨNG CUỘN & SỰ KIỆN
+    =========================================== */
+    function initScrollAnimations() {
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+      const timelineObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active-step");
+            } else {
+              entry.target.classList.remove("active-step");
+            }
+          });
+        },
+        { rootMargin: "-25% 0px -35% 0px", threshold: 0.1 }
+      );
+
+      document.querySelectorAll(".timeline-item").forEach((el) => timelineObserver.observe(el));
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderDestinations();
+      renderTimeline();
+      renderGallery();
+      lucide.createIcons();
+      initScrollAnimations();
+
+      // Đồng bộ ảnh chụp thực tế của Thảo Cầm Viên và Tuyến Metro số 1
+      syncAuthenticLocationPhotos();
+
+      // Menu trên thiết bị di động
+      const mobileBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      mobileBtn.addEventListener("click", () => {
+        const isHidden = mobileMenu.classList.contains("hidden");
+        mobileMenu.classList.toggle("hidden");
+        mobileBtn.setAttribute("aria-expanded", String(isHidden));
+      });
+
+      document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          mobileBtn.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      // Sự kiện đóng/mở và chuyển ảnh Lightbox
+      document.getElementById("lightbox-close").addEventListener("click", closeLightbox);
+      document.getElementById("lightbox-prev").addEventListener("click", () => {
+        currentLightboxIndex =
+          (currentLightboxIndex - 1 + JOURNEY_DATA.gallery.length) % JOURNEY_DATA.gallery.length;
+        updateLightboxContent();
+      });
+      document.getElementById("lightbox-next").addEventListener("click", () => {
+        currentLightboxIndex = (currentLightboxIndex + 1) % JOURNEY_DATA.gallery.length;
+        updateLightboxContent();
+      });
+      document.getElementById("lightbox-modal").addEventListener("click", (e) => {
+        if (e.target.id === "lightbox-modal") closeLightbox();
+      });
+
+      // Hỗ trợ điều khiển bàn phím cho Lightbox
+      document.addEventListener("keydown", (e) => {
+        const modal = document.getElementById("lightbox-modal");
+        if (modal.classList.contains("hidden")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowLeft") document.getElementById("lightbox-prev").click();
+        if (e.key === "ArrowRight") document.getElementById("lightbox-next").click();
+      });
+    });
+  </script>
+</body>
+</html>
